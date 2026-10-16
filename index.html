@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Pausa | Tu pausa empieza acá</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#fbf8f3',
+                            card: '#f4eee0',
+                            accent: '#6f4e37',
+                            dark: '#4a3525',
+                            text: '#2c221e',
+                            muted: '#7a6a5f',
+                            lightBg: '#faf6f0'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fbf8f3;
+            color: #2c221e;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .tab-btn.active {
+            background-color: #4a3525;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        /* Custom scrollbar for cart drawer */
+        .cart-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .cart-scroll::-webkit-scrollbar-track {
+            background: #f4eee0;
+        }
+        .cart-scroll::-webkit-scrollbar-thumb {
+            background: #6f4e37;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-brand-bg/90 backdrop-blur-md border-b border-brand-accent/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center font-serif text-xl font-bold group-hover:bg-brand-accent transition-colors">
+                    P
+                </div>
+                <span class="font-serif text-2xl font-bold tracking-tight text-brand-dark group-hover:text-brand-accent transition-colors">
+                    Café Pausa
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#inicio" class="text-brand-text hover:text-brand-accent transition-colors">Inicio</a>
+                <a href="#nosotros" class="text-brand-text hover:text-brand-accent transition-colors">Nosotros</a>
+                <a href="#nuestro-espacio" class="text-brand-text hover:text-brand-accent transition-colors">Nuestro espacio</a>
+                <a href="#menu" class="text-brand-text hover:text-brand-accent transition-colors">Menú</a>
+                <a href="#contacto" class="text-brand-text hover:text-brand-accent transition-colors">Contacto</a>
+            </nav>
+
+            <!-- Cart Trigger Button Nav -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleCartDrawer()" class="relative bg-brand-dark text-white hover:bg-brand-accent px-4 py-2.5 rounded-full flex items-center gap-2 text-sm font-medium transition-all shadow-sm hover:shadow group">
+                    <i class="fa-solid fa-basket-shopping text-base group-hover:scale-110 transition-transform"></i>
+                    <span class="hidden sm:inline">Mi Pedido</span>
+                    <span id="nav-cart-count" class="bg-brand-card text-brand-dark font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Abrir menú" class="md:hidden p-2 rounded-lg text-brand-dark hover:bg-brand-card transition-colors">
+                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-bg border-b border-brand-card px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-card">Inicio</a>
+            <a href="#nosotros" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-card">Nosotros</a>
+            <a href="#nuestro-espacio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-card">Nuestro espacio</a>
+            <a href="#menu" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-card">Menú</a>
+            <a href="#contacto" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-card">Contacto</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Inicio) -->
+    <section id="inicio" class="pt-8 pb-16 md:pt-16 md:pb-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <span class="inline-block px-4 py-1.5 rounded-full bg-brand-card text-brand-accent text-xs font-semibold tracking-wider uppercase">
+                        CAFÉ PAUSA MOMENTO
+                    </span>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-dark leading-tight">
+                        Tu pausa<br><span class="italic font-normal text-brand-accent">empieza acá.</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-brand-muted max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Café recién hecho, cosas ricas y un espacio para bajar un cambio, trabajar o pedir directo a tu casa.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#menu" class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-brand-dark text-white font-medium hover:bg-brand-accent transition-all shadow-md hover:shadow-lg">
+                            Ver menú y pedir
+                            <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                        <a href="#contacto" class="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-brand-dark/30 text-brand-dark font-medium hover:bg-brand-card transition-colors">
+                            Visitanos
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Video -->
+                <div class="lg:col-span-6">
+                    <div id="video-container" class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-brand-dark flex items-center justify-center">
+                        <video 
+                            id="hero-video"
+                            src="gemini_generated_video_2c200ecf.mp4" 
+                            controls 
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline 
+                            preload="auto"
+                            class="w-full h-[380px] sm:h-[480px] object-cover relative z-10">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION (Nosotros) -->
+    <section id="nosotros" class="py-16 md:py-24 bg-brand-card/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Image -->
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Interior acogedor de Café Pausa" 
+                             class="w-full h-[360px] sm:h-[440px] object-cover"
+                             onerror="this.src='https://placehold.co/800x600/f4eee0/4a3525?text=Sobre+Nosotros'">
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
+                    <div>
+                        <span class="text-xs font-bold text-brand-accent tracking-widest uppercase">Sobre nosotros</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark mt-2">
+                            Un lugar para frenar un ratito.
+                        </h2>
+                    </div>
+                    <p class="text-base sm:text-lg text-brand-muted leading-relaxed">
+                        Café Pausa es una cafetería urbana pensada para hacer una pausa dentro de la rutina. Un espacio cálido y tranquilo donde podés encontrarte con alguien, estudiar, trabajar, leer o pedir tu pedido para delivery o take away.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-brand-accent/10">
+                        <div>
+                            <span class="block font-serif text-2xl font-bold text-brand-dark">100%</span>
+                            <span class="text-xs text-brand-muted">Café de Especialidad</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-2xl font-bold text-brand-dark">Artesanal</span>
+                            <span class="text-xs text-brand-muted">Pastelería Propia</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-2xl font-bold text-brand-dark">Delivery</span>
+                            <span class="text-xs text-brand-muted">A tu casa o trabajo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR SPACE SECTION (Nuestro espacio) -->
+    <section id="nuestro-espacio" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold text-brand-accent tracking-widest uppercase">Ambiente & Galería</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark mt-2">Nuestro espacio</h2>
+                <p class="text-brand-muted mt-3">Diseñamos cada rincón pensando en tu momento del día.</p>
+            </div>
+
+            <!-- Space Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
+                <!-- Image 1 -->
+                <div class="md:col-span-4 rounded-2xl overflow-hidden shadow-md h-64 md:h-80 group relative">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" 
+                         alt="Interior salón principal" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://placehold.co/600x600/f4eee0/4a3525?text=Espacio+1'">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-sm font-medium">Salón Principal</span>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="md:col-span-4 rounded-2xl overflow-hidden shadow-md h-64 md:h-80 group relative">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" 
+                         alt="Barra de café y menú" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://placehold.co/600x600/f4eee0/4a3525?text=Espacio+2'">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-sm font-medium">Barra de Especialidad</span>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="md:col-span-4 rounded-2xl overflow-hidden shadow-md h-64 md:h-80 group relative">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" 
+                         alt="Exhibidor de pastelería" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://placehold.co/600x600/f4eee0/4a3525?text=Espacio+3'">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-sm font-medium">Mostrador Dulce</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION (Nuestro menú) -->
+    <section id="menu" class="py-16 md:py-24 bg-brand-card/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold text-brand-accent tracking-widest uppercase">Carta & Pedidos Online</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark mt-2">Nuestro menú</h2>
+                <p class="text-brand-muted mt-3">
+                    Seleccioná tus favoritos, agregalos al carrito y recibilo por delivery o retiralo en el local.
+                </p>
+            </div>
+
+            <!-- 3 Category Cards Summary -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Card 1: Café -->
+                <button onclick="switchTab('cafe')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-card flex items-center justify-center text-brand-dark text-xl mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark">Café</h3>
+                        <span class="text-xs font-semibold text-brand-accent bg-brand-card px-2.5 py-1 rounded-full group-hover:bg-brand-accent group-hover:text-white transition-colors">Ver carta →</span>
+                    </div>
+                    <p class="text-brand-muted text-sm leading-relaxed">
+                        Espresso, americano, cappuccino, flat white, filtrados y alternativas frías.
+                    </p>
+                </button>
+
+                <!-- Card 2: Pastelería -->
+                <button onclick="switchTab('pasteleria')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-card flex items-center justify-center text-brand-dark text-xl mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-cookie-bite"></i>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark">Pastelería</h3>
+                        <span class="text-xs font-semibold text-brand-accent bg-brand-card px-2.5 py-1 rounded-full group-hover:bg-brand-accent group-hover:text-white transition-colors">Ver carta →</span>
+                    </div>
+                    <p class="text-brand-muted text-sm leading-relaxed">
+                        Medialunas horneadas en el día, cookies, budines artesanales y tortas de autor.
+                    </p>
+                </button>
+
+                <!-- Card 3: Salado -->
+                <button onclick="switchTab('salado')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-card flex items-center justify-center text-brand-dark text-xl mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-bread-slice"></i>
+                    </div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark">Salado</h3>
+                        <span class="text-xs font-semibold text-brand-accent bg-brand-card px-2.5 py-1 rounded-full group-hover:bg-brand-accent group-hover:text-white transition-colors">Ver carta →</span>
+                    </div>
+                    <p class="text-brand-muted text-sm leading-relaxed">
+                        Tostados en pan de masa madre, sándwiches gourmet, tostadas con palta y ensaladas.
+                    </p>
+                </button>
+            </div>
+
+            <!-- MENU CONTROLS & SEARCH BAR -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-accent/10 shadow-lg mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-brand-card pb-6 mb-6">
+                    <!-- Category Tabs -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="switchTab('cafe')" id="tab-cafe" class="tab-btn active px-6 py-3 rounded-full text-sm font-semibold transition-all">
+                            <i class="fa-solid fa-mug-hot mr-2"></i>Café
+                        </button>
+                        <button onclick="switchTab('pasteleria')" id="tab-pasteleria" class="tab-btn px-6 py-3 rounded-full text-sm font-semibold text-brand-muted hover:text-brand-dark transition-all">
+                            <i class="fa-solid fa-cookie-bite mr-2"></i>Pastelería
+                        </button>
+                        <button onclick="switchTab('salado')" id="tab-salado" class="tab-btn px-6 py-3 rounded-full text-sm font-semibold text-brand-muted hover:text-brand-dark transition-all">
+                            <i class="fa-solid fa-bread-slice mr-2"></i>Salado
+                        </button>
+                    </div>
+
+                    <!-- Search Input & Quick Filter -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                        <div class="relative flex-1 sm:w-64">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-brand-muted text-sm"></i>
+                            <input type="text" id="menu-search" oninput="filterMenuItems()" placeholder="Buscar ítem o ingrediente..." class="w-full pl-10 pr-4 py-2.5 rounded-full border border-brand-accent/20 bg-brand-bg/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                        </div>
+                        <select id="tag-filter" onchange="filterMenuItems()" class="px-4 py-2.5 rounded-full border border-brand-accent/20 bg-brand-bg/50 text-xs font-semibold text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                            <option value="todos">Todos los ítems</option>
+                            <option value="especialidad">Especialidad</option>
+                            <option value="recomendado">Recomendado</option>
+                            <option value="veggie">Veggie</option>
+                            <option value="sin-tacc">Sin TACC</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- DESPLEGABLE DE CARTA DETALLADA -->
+                <!-- CARTA DE CAFÉ -->
+                <div id="content-cafe" class="tab-content menu-category-container">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark">Carta de Café & Bebidas</h3>
+                        <span class="text-xs text-brand-muted italic">Granos de origen único recién molidos</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 menu-grid" id="grid-cafe">
+                    </div>
+                </div>
+
+                <!-- CARTA DE PASTELERÍA -->
+                <div id="content-pasteleria" class="tab-content menu-category-container hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark">Carta de Pastelería & Dulces</h3>
+                        <span class="text-xs text-brand-muted italic">Horneado fresco todas las mañanas</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 menu-grid" id="grid-pasteleria">
+                    </div>
+                </div>
+
+                <!-- CARTA DE SALADO -->
+                <div id="content-salado" class="tab-content menu-category-container hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark">Carta de Opciones Saladas</h3>
+                        <span class="text-xs text-brand-muted italic">Panes de masa madre e ingredientes de estación</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 menu-grid" id="grid-salado">
+                    </div>
+                </div>
+
+                <!-- Mensaje cuando no hay resultados en búsqueda -->
+                <div id="no-results" class="hidden text-center py-12">
+                    <i class="fa-solid fa-mug-hot text-4xl text-brand-muted/40 mb-3"></i>
+                    <p class="font-serif text-lg font-semibold text-brand-dark">No encontramos productos con esa búsqueda</p>
+                    <p class="text-xs text-brand-muted mt-1">Probuá escribiendo otra palabra o borra los filtros aplicados.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VISIT US / CONTACT SECTION -->
+    <section id="contacto" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-card rounded-3xl overflow-hidden border border-brand-accent/10 shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    <!-- Image -->
+                    <div class="lg:col-span-6 relative min-h-[300px] lg:min-h-[500px]">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Café Pausa Taza y Tostada" 
+                             class="absolute inset-0 w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/800x800/4a3525/f4eee0?text=Visitanos'">
+                        <div class="absolute inset-0 bg-brand-dark/20"></div>
+                    </div>
+
+                    <!-- Location & Contact Info Side -->
+                    <div class="lg:col-span-6 p-8 sm:p-12 flex flex-col justify-center space-y-8">
+                        <div>
+                            <span class="text-xs font-bold text-brand-accent tracking-widest uppercase">Visitanos</span>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark mt-2">
+                                Tu próxima pausa está más cerca.
+                            </h2>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-brand-bg flex items-center justify-center text-brand-accent shrink-0 mt-1 shadow-sm">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-dark">Dirección</h4>
+                                    <p class="text-brand-muted text-sm mt-0.5">San Benito 1700, Palermo, Buenos Aires</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full bg-brand-bg flex items-center justify-center text-brand-accent shrink-0 mt-1 shadow-sm">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-dark">Horarios</h4>
+                                    <p class="text-brand-muted text-sm mt-0.5">Lunes a viernes de 8 a 19 hs.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-brand-accent/10">
+                            <button onclick="openContactModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-dark text-white font-medium hover:bg-brand-accent transition-all shadow-md">
+                                Enviar un mensaje
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white/90 py-12 border-t border-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-white/10">
+                <div class="text-center md:text-left">
+                    <h3 class="font-serif text-2xl font-bold text-white">Café Pausa</h3>
+                    <p class="text-brand-card/70 text-sm mt-1">Tu pausa empieza acá.</p>
+                </div>
+
+                <nav class="flex flex-wrap justify-center gap-6 text-sm text-brand-card/80">
+                    <a href="#inicio" class="hover:text-white transition-colors">Inicio</a>
+                    <a href="#nosotros" class="hover:text-white transition-colors">Nosotros</a>
+                    <a href="#nuestro-espacio" class="hover:text-white transition-colors">Nuestro espacio</a>
+                    <a href="#menu" class="hover:text-white transition-colors">Menú</a>
+                    <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+                </nav>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-card/60 gap-4">
+                <p>&copy; 2026 Café Pausa. Todos los derechos reservados.</p>
+                <div class="flex space-x-4 text-base">
+                    <a href="https://www.instagram.com/juanamey_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61590845156224" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/5491132325090" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="hover:text-white transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE CARRITO EN MOBILE -->
+    <button id="floating-cart-btn" onclick="toggleCartDrawer()" class="fixed bottom-6 right-6 z-40 bg-brand-dark text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-brand-accent transition-all hover:scale-105 group border-2 border-brand-card">
+        <i class="fa-solid fa-basket-shopping text-xl group-hover:scale-110 transition-transform"></i>
+        <span id="floating-cart-count" class="absolute -top-1 -right-1 bg-amber-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
+    </button>
+
+    <!-- PANEL LATERAL DE CARRITO DE COMPRAS (DRAWER) -->
+    <div id="cart-drawer-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    
+    <aside id="cart-drawer" class="fixed top-0 right-0 z-50 w-full sm:w-[450px] h-full bg-brand-bg shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Header Carrito -->
+        <div class="p-6 bg-brand-card border-b border-brand-accent/10 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-brand-dark text-white flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="font-serif font-bold text-xl text-brand-dark">Tu Pedido</h3>
+                    <p class="text-xs text-brand-muted" id="cart-item-count-text">0 productos seleccionados</p>
+                </div>
+            </div>
+            <button onclick="toggleCartDrawer()" class="w-9 h-9 rounded-full bg-brand-bg text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4 cart-scroll" id="cart-items-container">
+        </div>
+
+        <!-- Cart Footer / Order Options Form -->
+        <div class="p-6 bg-white border-t border-brand-accent/10 shadow-lg space-y-4">
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-2">Modalidad de entrega</label>
+                <div class="grid grid-cols-2 gap-2 bg-brand-bg p-1 rounded-2xl border border-brand-accent/10">
+                    <button type="button" onclick="setOrderType('takeaway')" id="btn-takeaway" class="py-2 px-3 rounded-xl text-xs font-bold transition-all bg-brand-dark text-white shadow-sm">
+                        <i class="fa-solid fa-store mr-1.5"></i>Take Away
+                    </button>
+                    <button type="button" onclick="setOrderType('delivery')" id="btn-delivery" class="py-2 px-3 rounded-xl text-xs font-bold text-brand-muted hover:text-brand-dark transition-all">
+                        <i class="fa-solid fa-motorcycle mr-1.5"></i>Delivery
+                    </button>
+                </div>
+            </div>
+
+            <div id="delivery-fields" class="hidden space-y-3 pt-2 border-t border-brand-card">
+                <div>
+                    <input type="text" id="cust-name" placeholder="Tu Nombre *" class="w-full px-3.5 py-2 rounded-xl border border-brand-accent/20 bg-brand-bg/50 text-xs focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+                <div>
+                    <input type="text" id="cust-address" placeholder="Dirección de Entrega y Depto *" class="w-full px-3.5 py-2 rounded-xl border border-brand-accent/20 bg-brand-bg/50 text-xs focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+                <div>
+                    <input type="tel" id="cust-phone" placeholder="Teléfono de Contacto *" class="w-full px-3.5 py-2 rounded-xl border border-brand-accent/20 bg-brand-bg/50 text-xs focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+                <div>
+                    <input type="text" id="cust-notes" placeholder="Aclaración / Notas (Opcional)" class="w-full px-3.5 py-2 rounded-xl border border-brand-accent/20 bg-brand-bg/50 text-xs focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+            </div>
+
+            <div class="space-y-1.5 text-xs pt-2 border-t border-brand-card">
+                <div class="flex justify-between text-brand-muted">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal" class="font-medium text-brand-dark">$0</span>
+                </div>
+                <div class="flex justify-between text-brand-muted" id="summary-shipping-row">
+                    <span>Costo de envío (Palermo)</span>
+                    <span id="summary-shipping" class="font-medium text-brand-dark">$800</span>
+                </div>
+                <div class="flex justify-between text-sm font-bold text-brand-dark pt-2 border-t border-brand-card/80">
+                    <span>Total a pagar</span>
+                    <span id="summary-total" class="text-base text-brand-accent">$0</span>
+                </div>
+            </div>
+
+            <button onclick="submitOrderWhatsApp()" id="btn-submit-order" class="w-full py-3.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                Confirmar y pedir por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- CONTACT MODAL -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-bg rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl border border-brand-card">
+            <button onclick="closeContactModal()" class="absolute top-5 right-5 text-brand-muted hover:text-brand-dark text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2">Escribinos</h3>
+            <p class="text-xs text-brand-muted mb-6">Dejanos tu consulta y te respondemos a la brevedad.</p>
+
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark mb-1">Nombre</label>
+                    <input type="text" required placeholder="Tu nombre" class="w-full px-4 py-2.5 rounded-xl border border-brand-accent/20 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark mb-1">Email</label>
+                    <input type="email" required placeholder="tu@email.com" class="w-full px-4 py-2.5 rounded-xl border border-brand-accent/20 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark mb-1">Mensaje</label>
+                    <textarea rows="3" required placeholder="¿En qué podemos ayudarte?" class="w-full px-4 py-2.5 rounded-xl border border-brand-accent/20 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"></textarea>
+                </div>
+
+                <div id="form-status" class="hidden text-xs p-3 rounded-xl bg-green-100 text-green-800 font-medium"></div>
+
+                <button type="submit" class="w-full py-3 rounded-full bg-brand-dark text-white font-medium hover:bg-brand-accent transition-colors shadow">
+                    Enviar mensaje
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA BASE OF PRODUCTS
+        const menuProducts = [
+            // CAFÉ
+            { id: 'c1', category: 'cafe', name: 'Flat White', price: 3800, desc: 'Doble Ristretto con leche vaporizada en textura fina y sedosa.', tags: ['especialidad', 'recomendado'], image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=300&q=80' },
+            { id: 'c2', category: 'cafe', name: 'Cappuccino Italiano', price: 3600, desc: 'Espresso, leche emulsionada con abundante crema y terminación de cacao amargo.', tags: ['recomendado'], image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=300&q=80' },
+            { id: 'c3', category: 'cafe', name: 'Espresso Doble', price: 2900, desc: 'Extracción pura e intensa de granos arábigos con notas a avellana y chocolate.', tags: [], image: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=300&q=80' },
+            { id: 'c4', category: 'cafe', name: 'Iced Latte Vanilla', price: 4100, desc: 'Espresso doble sobre leche fría, hielo en roca y infusión natural de vainilla.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=300&q=80' },
+            { id: 'c5', category: 'cafe', name: 'Matcha Latte Orgánico', price: 4400, desc: 'Matcha de grado ceremonial importado de Uji con leche cremada y suave toque dulce.', tags: ['especialidad', 'sin-tacc'], image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=300&q=80' },
+            { id: 'c6', category: 'cafe', name: 'Filtrado V60 / Kalita', price: 4200, desc: 'Extracción artesanal por goteo con granos de Colombia o Etiopía. Taza limpia y aromática.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80' },
+
+            // PASTELERÍA
+            { id: 'p1', category: 'pasteleria', name: 'Croissant de Manteca', price: 2200, desc: 'Auténtico hojaldre estilo francés con fermentación lenta de 24 horas.', tags: ['recomendado'], image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80' },
+            { id: 'p2', category: 'pasteleria', name: 'Carrot Cake de la Casa', price: 4500, desc: 'Bizcochuelo húmedo especiado con zanahorias, nueces picadas y frosting de queso mascarpone.', tags: ['especialidad', 'recomendado'], image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=300&q=80' },
+            { id: 'p3', category: 'pasteleria', name: 'Cheesecake de Frutos Rojos', price: 4800, desc: 'Clásico estilo New York horneado con mermelada casera de frambuesas y moras.', tags: ['sin-tacc'], image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=300&q=80' },
+            { id: 'p4', category: 'pasteleria', name: 'Cookie XL Dark & Sea Salt', price: 2600, desc: 'Masa crocante por fuera y blanda por dentro con trozos de chocolate 70% y escamas de sal.', tags: ['veggie'], image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=300&q=80' },
+            { id: 'p5', category: 'pasteleria', name: 'Budín de Limón & Amapola', price: 2800, desc: 'Porción abundante con almíbar de cítricos naturales y glaseado crujiente.', tags: [], image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80' },
+            { id: 'p6', category: 'pasteleria', name: 'Cinnamon Roll Tibio', price: 3200, desc: 'Rollo esponjoso de canela de Ceylan servido tibio con un toque de crema de azúcar.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=300&q=80' },
+
+            // SALADO
+            { id: 's1', category: 'salado', name: 'Tostado Especial en Masa Madre', price: 5200, desc: 'Pan de campo, queso gouda estacionado, jamón natural y manteca de hierbas.', tags: ['recomendado'], image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=300&q=80' },
+            { id: 's2', category: 'salado', name: 'Avocado Toast & Huevo Poché', price: 5600, desc: 'Tostada rústica con palta pisada con limón, huevo poché cremoso, tomates asados y semillas.', tags: ['veggie', 'recomendado'], image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80' },
+            { id: 's3', category: 'salado', name: 'Ciabatta Serrana Gourmet', price: 6400, desc: 'Jamón crudo estacionado, rúcula fresca, bocconcinos de mozzarella y lascas de parmesano.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=300&q=80' },
+            { id: 's4', category: 'salado', name: 'Bowl Pausa Verde', price: 5800, desc: 'Base de quinoa tricolor, hummus casero de garbanzos, zapallo anco asado, kale y dressing.', tags: ['veggie', 'sin-tacc'], image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80' },
+            { id: 's5', category: 'salado', name: 'Bagel de Queso Brie & Hongos', price: 5900, desc: 'Bagel tostado con sésamo, queso brie tibio, portobellos salteados y cebollitas caramelizadas.', tags: ['veggie'], image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=300&q=80' },
+            { id: 's6', category: 'salado', name: 'Tarta de Calabaza & Queso', price: 4900, desc: 'Masa casera sin TACC, corazón cremoso de calabaza horneada, tomillo y mix de quesos suave.', tags: ['sin-tacc'], image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80' }
+        ];
+
+        // CART STATE
+        let cart = [];
+        let itemQuantities = {};
+        let orderType = 'takeaway';
+        const SHIPPING_COST = 800;
+
+        menuProducts.forEach(p => {
+            itemQuantities[p.id] = 1;
+        });
+
+        function renderMenuProducts() {
+            const categories = ['cafe', 'pasteleria', 'salado'];
+
+            categories.forEach(cat => {
+                const grid = document.getElementById(`grid-${cat}`);
+                if (!grid) return;
+
+                const filtered = menuProducts.filter(p => p.category === cat);
+                grid.innerHTML = filtered.map(p => {
+                    const tagBadges = p.tags.map(t => {
+                        if (t === 'especialidad') return `<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">Especialidad</span>`;
+                        if (t === 'recomendado') return `<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900">Recomendado</span>`;
+                        if (t === 'veggie') return `<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-green-100 text-green-900">Veggie</span>`;
+                        if (t === 'sin-tacc') return `<span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-purple-100 text-purple-900">Sin TACC</span>`;
+                        return '';
+                    }).join(' ');
+
+                    return `
+                        <div class="menu-item bg-brand-bg/40 p-4 rounded-2xl border border-brand-card hover:bg-white hover:border-brand-accent/20 transition-all flex flex-col justify-between group"
+                             data-category="${p.category}"
+                             data-tags="${p.tags.join(' ')}"
+                             data-title="${p.name.toLowerCase()}"
+                             data-desc="${p.desc.toLowerCase()}">
+                            
+                            <div class="flex gap-4 items-start">
+                                <img src="${p.image}" alt="${p.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover shrink-0" onerror="this.src='https://placehold.co/200x200/f4eee0/4a3525?text=${encodeURIComponent(p.name)}'">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-start justify-between gap-2">
+                                        <h4 class="font-serif font-bold text-base sm:text-lg text-brand-dark group-hover:text-brand-accent transition-colors">${p.name}</h4>
+                                        <span class="font-serif font-bold text-brand-dark text-base sm:text-lg whitespace-nowrap">$ ${p.price.toLocaleString()}</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-brand-muted mt-1 line-clamp-2">${p.desc}</p>
+                                    <div class="flex flex-wrap gap-1.5 mt-2">
+                                        ${tagBadges}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-3 border-t border-brand-card flex items-center justify-between gap-2">
+                                <div class="flex items-center bg-brand-bg rounded-lg border border-brand-accent/20 p-1">
+                                    <button onclick="changeMenuQty('${p.id}', -1)" class="w-7 h-7 rounded-md bg-white hover:bg-brand-card text-brand-dark font-bold text-xs flex items-center justify-center transition-colors">-</button>
+                                    <span id="qty-display-${p.id}" class="w-8 text-center text-xs font-bold text-brand-dark">${itemQuantities[p.id]}</span>
+                                    <button onclick="changeMenuQty('${p.id}', 1)" class="w-7 h-7 rounded-md bg-white hover:bg-brand-card text-brand-dark font-bold text-xs flex items-center justify-center transition-colors">+</button>
+                                </div>
+
+                                <button onclick="addToCart('${p.id}')" class="flex-1 py-2 px-3 rounded-xl bg-brand-dark hover:bg-brand-accent text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-cart-plus text-xs"></i>
+                                    <span>Agregar al carrito</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            });
+        }
+
+        function changeMenuQty(productId, delta) {
+            const current = itemQuantities[productId] || 1;
+            const updated = Math.max(1, Math.min(20, current + delta));
+            itemQuantities[productId] = updated;
+            const display = document.getElementById(`qty-display-${productId}`);
+            if (display) display.textContent = updated;
+        }
+
+        function addToCart(productId) {
+            const product = menuProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            const qtyToAdd = itemQuantities[productId] || 1;
+            const existingIndex = cart.findIndex(item => item.id === productId);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += qtyToAdd;
+            } else {
+                cart.push({ ...product, quantity: qtyToAdd });
+            }
+
+            itemQuantities[productId] = 1;
+            const display = document.getElementById(`qty-display-${productId}`);
+            if (display) display.textContent = 1;
+
+            updateCartUI();
+            
+            const floatBtn = document.getElementById('floating-cart-btn');
+            if (floatBtn) {
+                floatBtn.classList.add('scale-125');
+                setTimeout(() => floatBtn.classList.remove('scale-125'), 200);
+            }
+        }
+
+        function updateCartUI() {
+            const totalItemsCount = cart.reduce((sum, i) => sum + i.quantity, 0);
+            
+            document.getElementById('nav-cart-count').textContent = totalItemsCount;
+            document.getElementById('floating-cart-count').textContent = totalItemsCount;
+            document.getElementById('cart-item-count-text').textContent = `${totalItemsCount} ${totalItemsCount === 1 ? 'producto seleccionado' : 'productos seleccionados'}`;
+
+            const container = document.getElementById('cart-items-container');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-brand-muted space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-5xl text-brand-card"></i>
+                        <p class="font-serif text-lg font-bold text-brand-dark">Tu carrito está vacío</p>
+                        <p class="text-xs max-w-xs mx-auto">Explorá nuestro menú y agregá café o cosas ricas para pedir.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="bg-white p-3.5 rounded-2xl border border-brand-card shadow-sm flex items-center gap-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <h5 class="font-serif font-bold text-sm text-brand-dark truncate">${item.name}</h5>
+                            <span class="text-xs text-brand-accent font-bold">$ ${item.price.toLocaleString()} c/u</span>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center bg-brand-bg rounded-lg border border-brand-accent/20 p-0.5">
+                                    <button onclick="updateCartItemQty('${item.id}', -1)" class="w-6 h-6 rounded bg-white text-brand-dark font-bold text-xs flex items-center justify-center">-</button>
+                                    <span class="w-6 text-center text-xs font-bold text-brand-dark">${item.quantity}</span>
+                                    <button onclick="updateCartItemQty('${item.id}', 1)" class="w-6 h-6 rounded bg-white text-brand-dark font-bold text-xs flex items-center justify-center">+</button>
+                                </div>
+                                <span class="font-serif font-bold text-sm text-brand-dark">$ ${(item.price * item.quantity).toLocaleString()}</span>
+                            </div>
+                        </div>
+                        <button onclick="removeCartItem('${item.id}')" class="text-red-400 hover:text-red-600 p-2 text-sm transition-colors" title="Eliminar">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = (orderType === 'delivery' && cart.length > 0) ? SHIPPING_COST : 0;
+            const total = subtotal + shipping;
+
+            document.getElementById('summary-subtotal').textContent = `$ ${subtotal.toLocaleString()}`;
+            document.getElementById('summary-shipping').textContent = `$ ${shipping.toLocaleString()}`;
+            document.getElementById('summary-total').textContent = `$ ${total.toLocaleString()}`;
+
+            const shippingRow = document.getElementById('summary-shipping-row');
+            if (orderType === 'takeaway') {
+                shippingRow.classList.add('hidden');
+            } else {
+                shippingRow.classList.remove('hidden');
+            }
+        }
+
+        function updateCartItemQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                removeCartItem(id);
+            } else {
+                updateCartUI();
+            }
+        }
+
+        function removeCartItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-drawer-overlay');
+            const isClosed = drawer.classList.contains('translate-x-full');
+
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function setOrderType(type) {
+            orderType = type;
+            const btnTake = document.getElementById('btn-takeaway');
+            const btnDel = document.getElementById('btn-delivery');
+            const delFields = document.getElementById('delivery-fields');
+
+            if (type === 'takeaway') {
+                btnTake.className = 'py-2 px-3 rounded-xl text-xs font-bold transition-all bg-brand-dark text-white shadow-sm';
+                btnDel.className = 'py-2 px-3 rounded-xl text-xs font-bold text-brand-muted hover:text-brand-dark transition-all';
+                delFields.classList.add('hidden');
+            } else {
+                btnDel.className = 'py-2 px-3 rounded-xl text-xs font-bold transition-all bg-brand-dark text-white shadow-sm';
+                btnTake.className = 'py-2 px-3 rounded-xl text-xs font-bold text-brand-muted hover:text-brand-dark transition-all';
+                delFields.classList.remove('hidden');
+            }
+
+            updateCartUI();
+        }
+
+        function submitOrderWhatsApp() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío. Por favor seleccioná al menos un ítem.');
+                return;
+            }
+
+            let name = '';
+            let address = '';
+            let phone = '';
+            let notes = '';
+
+            if (orderType === 'delivery') {
+                name = document.getElementById('cust-name').value.trim();
+                address = document.getElementById('cust-address').value.trim();
+                phone = document.getElementById('cust-phone').value.trim();
+                notes = document.getElementById('cust-notes').value.trim();
+
+                if (!name || !address || !phone) {
+                    alert('Por favor completá Nombre, Dirección y Teléfono para la entrega.');
+                    return;
+                }
+            }
+
+            let msg = `*NUEVO PEDIDO - CAFÉ PAUSA*\n`;
+            msg += `------------------------------\n`;
+            msg += `*Modalidad:* ${orderType === 'delivery' ? '🛵 DELIVERY' : '🛍️ TAKE AWAY (Retiro)'}\n\n`;
+
+            if (orderType === 'delivery') {
+                msg += `*Cliente:* ${name}\n`;
+                msg += `*Dirección:* ${address}\n`;
+                msg += `*Teléfono:* ${phone}\n`;
+                if (notes) msg += `*Notas:* ${notes}\n`;
+                msg += `\n`;
+            }
+
+            msg += `*DETALLE DEL PEDIDO:*\n`;
+            let subtotal = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                msg += `• ${item.quantity}x ${item.name} ($${item.price.toLocaleString()} c/u) = $${itemTotal.toLocaleString()}\n`;
+            });
+
+            const shipping = orderType === 'delivery' ? SHIPPING_COST : 0;
+            const total = subtotal + shipping;
+
+            msg += `\n*Subtotal:* $${subtotal.toLocaleString()}\n`;
+            if (orderType === 'delivery') {
+                msg += `*Envío:* $${shipping.toLocaleString()}\n`;
+            }
+            msg += `*TOTAL A PAGAR:* $${total.toLocaleString()}\n`;
+            msg += `------------------------------\n`;
+            msg += `¡Muchas gracias!`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            const whatsappNumber = '5491132325090';
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMsg}`, '_blank');
+        }
+
+        // NAV & TAB LOGIC
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        let currentActiveCategory = 'cafe';
+
+        function switchTab(category) {
+            currentActiveCategory = category;
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('text-brand-muted');
+            });
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            const activeBtn = document.getElementById(`tab-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('text-brand-muted');
+            }
+
+            const activeContent = document.getElementById(`content-${category}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+
+            filterMenuItems();
+        }
+
+        function filterMenuItems() {
+            const searchQuery = document.getElementById('menu-search').value.toLowerCase().trim();
+            const selectedTag = document.getElementById('tag-filter').value;
+            const activeCategoryContainer = document.getElementById(`content-${currentActiveCategory}`);
+            
+            if (!activeCategoryContainer) return;
+
+            const items = activeCategoryContainer.querySelectorAll('.menu-item');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const title = item.getAttribute('data-title') || '';
+                const desc = item.getAttribute('data-desc') || '';
+                const tags = item.getAttribute('data-tags') || '';
+
+                const matchesSearch = searchQuery === '' || title.includes(searchQuery) || desc.includes(searchQuery);
+                const matchesTag = selectedTag === 'todos' || tags.includes(selectedTag);
+
+                if (matchesSearch && matchesTag) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            const noResults = document.getElementById('no-results');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // INITIALIZATION & AUTOPLAY VIDEO FIX
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMenuProducts();
+            switchTab('cafe');
+            updateCartUI();
+
+            // Forzar reproducción de video al cargar
+            const video = document.getElementById('hero-video');
+            if (video) {
+                video.muted = true;
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.warn("Autoplay prevenido por el navegador o archivo no encontrado:", error);
+                    });
+                }
+
+                // Manejo si el archivo de video no existe localmente
+                video.addEventListener('error', function() {
+                    const container = document.getElementById('video-container');
+                    if (container) {
+                        container.innerHTML = `
+                            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Café Pausa" 
+                                 class="w-full h-[380px] sm:h-[480px] object-cover relative z-10">
+                        `;
+                    }
+                });
+            }
+        });
+
+        // CONTACT MODAL LOGIC
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.remove('hidden');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contact-modal').classList.add('hidden');
+            document.getElementById('form-status').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const statusBox = document.getElementById('form-status');
+            statusBox.textContent = '¡Gracias por tu mensaje! Te responderemos muy pronto.';
+            statusBox.classList.remove('hidden');
+            
+            setTimeout(() => {
+                e.target.reset();
+                closeContactModal();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
