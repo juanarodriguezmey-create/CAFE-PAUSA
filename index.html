@@ -56,7 +56,7 @@
             color: #ffffff;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        /* Custom scrollbar for cart drawer */
+        /* Custom scrollbar for cart drawer and modal */
         .cart-scroll::-webkit-scrollbar {
             width: 5px;
         }
@@ -271,7 +271,7 @@
             <!-- 3 Category Cards Summary -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <!-- Card 1: Café -->
-                <button onclick="switchTab('cafe')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
+                <button onclick="openHighlightsModal('cafe')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
                     <div class="w-12 h-12 rounded-xl bg-brand-card flex items-center justify-center text-brand-dark text-xl mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-mug-hot"></i>
                     </div>
@@ -285,7 +285,7 @@
                 </button>
 
                 <!-- Card 2: Pastelería -->
-                <button onclick="switchTab('pasteleria')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
+                <button onclick="openHighlightsModal('pasteleria')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
                     <div class="w-12 h-12 rounded-xl bg-brand-card flex items-center justify-center text-brand-dark text-xl mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-cookie-bite"></i>
                     </div>
@@ -299,7 +299,7 @@
                 </button>
 
                 <!-- Card 3: Salado -->
-                <button onclick="switchTab('salado')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
+                <button onclick="openHighlightsModal('salado')" class="text-left bg-white rounded-2xl p-6 sm:p-8 border border-brand-accent/10 shadow-sm hover:shadow-md hover:border-brand-accent/40 transition-all cursor-pointer group">
                     <div class="w-12 h-12 rounded-xl bg-brand-card flex items-center justify-center text-brand-dark text-xl mb-4 group-hover:bg-brand-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-bread-slice"></i>
                     </div>
@@ -477,6 +477,45 @@
         <span id="floating-cart-count" class="absolute -top-1 -right-1 bg-amber-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
     </button>
 
+    <!-- MODAL EMERGENTE POP-UP DE DESTACADOS -->
+    <div id="highlights-modal-overlay" onclick="closeHighlightsModal()" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
+        <div onclick="event.stopPropagation()" class="bg-[#f7f2e8] rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl border border-brand-accent/20 max-h-[90vh] flex flex-col animate-in fade-in zoom-in duration-200">
+            
+            <!-- Modal Header -->
+            <div class="flex items-start justify-between pb-4 mb-4 border-b border-brand-accent/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-[#6a4e32] text-white flex items-center justify-center text-lg shadow-inner">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-bold text-brand-accent tracking-widest uppercase block">LO MÁS PEDIDO</span>
+                        <h3 id="highlights-modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-brand-dark leading-tight">Destacados</h3>
+                    </div>
+                </div>
+                <button onclick="closeHighlightsModal()" class="text-brand-muted hover:text-brand-dark text-xl p-1 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Listado de Destacados con scroll interno -->
+            <div id="highlights-modal-body" class="space-y-4 overflow-y-auto pr-1 cart-scroll flex-1 my-2">
+                <!-- Ítems agregados dinámicamente -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="pt-5 mt-3 border-t border-brand-accent/10 flex items-center justify-between">
+                <button onclick="goToFullMenuFromModal()" class="text-brand-accent hover:text-brand-dark text-xs sm:text-sm font-bold flex items-center gap-1 group transition-colors">
+                    <span>Ver carta completa</span>
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+                <button onclick="closeHighlightsModal()" class="px-6 py-2.5 rounded-full bg-[#2c221e] text-white font-bold text-xs sm:text-sm hover:bg-brand-accent transition-all shadow-md">
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
     <!-- PANEL LATERAL DE CARRITO DE COMPRAS (DRAWER) -->
     <div id="cart-drawer-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
     
@@ -614,15 +653,73 @@
             { id: 's6', category: 'salado', name: 'Tarta de Calabaza & Queso', price: 4900, desc: 'Masa casera sin TACC, corazón cremoso de calabaza horneada, tomillo y mix de quesos suave.', tags: ['sin-tacc'], image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80' }
         ];
 
-        // CART STATE
+        // CART STATE & MODAL STATE
         let cart = [];
         let itemQuantities = {};
         let orderType = 'takeaway';
+        let currentModalCat = 'cafe';
         const SHIPPING_COST = 800;
 
         menuProducts.forEach(p => {
             itemQuantities[p.id] = 1;
         });
+
+        // POP-UP HIGHLIGHTS MODAL LOGIC
+        function openHighlightsModal(category) {
+            currentModalCat = category;
+            
+            const overlay = document.getElementById('highlights-modal-overlay');
+            const titleElem = document.getElementById('highlights-modal-title');
+            const bodyElem = document.getElementById('highlights-modal-body');
+
+            const categoryTitles = {
+                cafe: 'Destacados de Café',
+                pasteleria: 'Destacados de Pastelería',
+                salado: 'Destacados de Salado'
+            };
+
+            titleElem.textContent = categoryTitles[category] || 'Destacados';
+
+            // Seleccionar los destacados
+            let highlights = menuProducts.filter(p => p.category === category && (p.tags.includes('especialidad') || p.tags.includes('recomendado')));
+            if (highlights.length === 0) {
+                highlights = menuProducts.filter(p => p.category === category).slice(0, 2);
+            }
+
+            bodyElem.innerHTML = highlights.map(p => `
+                <div class="bg-[#fbf8f3] p-4 sm:p-5 rounded-2xl border border-brand-accent/15 flex gap-4 items-center shadow-sm">
+                    <img src="${p.image}" alt="${p.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shrink-0 shadow-sm" onerror="this.src='https://placehold.co/200x200/f4eee0/4a3525?text=${encodeURIComponent(p.name)}'">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h4 class="font-serif font-bold text-base sm:text-lg text-brand-dark truncate">${p.name}</h4>
+                            <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-200/70 text-amber-900 border border-amber-300 shrink-0">DESTACADO</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 leading-relaxed">${p.desc}</p>
+                        <span class="font-serif font-bold text-sm sm:text-base text-brand-dark block mt-2">$ ${p.price.toLocaleString()}</span>
+                    </div>
+                    <button onclick="addToCart('${p.id}')" class="px-3.5 py-2 rounded-xl bg-[#6a4e32] hover:bg-brand-dark text-white text-xs font-bold transition-all shadow shrink-0 flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Agregar</span>
+                    </button>
+                </div>
+            `).join('');
+
+            overlay.classList.remove('hidden');
+        }
+
+        function closeHighlightsModal() {
+            const overlay = document.getElementById('highlights-modal-overlay');
+            if (overlay) overlay.classList.add('hidden');
+        }
+
+        function goToFullMenuFromModal() {
+            closeHighlightsModal();
+            switchTab(currentModalCat);
+            const menuSection = document.getElementById('menu');
+            if (menuSection) {
+                menuSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
 
         function renderMenuProducts() {
             const categories = ['cafe', 'pasteleria', 'salado'];
