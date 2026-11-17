@@ -172,10 +172,9 @@
                 <!-- Image -->
                 <div class="lg:col-span-6 order-2 lg:order-1">
                     <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-                        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80" 
+                        <img src="img/nosotros.avif" 
                              alt="Interior acogedor de Café Pausa" 
-                             class="w-full h-[360px] sm:h-[440px] object-cover"
-                             onerror="this.src='https://placehold.co/800x600/f4eee0/4a3525?text=Sobre+Nosotros'">
+                             class="w-full h-[360px] sm:h-[440px] object-cover">
                     </div>
                 </div>
 
@@ -222,10 +221,9 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6">
                 <!-- Image 1 -->
                 <div class="md:col-span-4 rounded-2xl overflow-hidden shadow-md h-64 md:h-80 group relative">
-                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" 
+                    <img src="img/espacio-1.avif" 
                          alt="Interior salón principal" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='https://placehold.co/600x600/f4eee0/4a3525?text=Espacio+1'">
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                         <span class="text-white text-sm font-medium">Salón Principal</span>
                     </div>
@@ -233,10 +231,9 @@
 
                 <!-- Image 2 -->
                 <div class="md:col-span-4 rounded-2xl overflow-hidden shadow-md h-64 md:h-80 group relative">
-                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" 
+                    <img src="img/espacio-2.avif" 
                          alt="Barra de café y menú" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='https://placehold.co/600x600/f4eee0/4a3525?text=Espacio+2'">
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                         <span class="text-white text-sm font-medium">Barra de Especialidad</span>
                     </div>
@@ -244,10 +241,9 @@
 
                 <!-- Image 3 -->
                 <div class="md:col-span-4 rounded-2xl overflow-hidden shadow-md h-64 md:h-80 group relative">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" 
+                    <img src="img/espacio-3.avif" 
                          alt="Exhibidor de pastelería" 
-                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='https://placehold.co/600x600/f4eee0/4a3525?text=Espacio+3'">
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                         <span class="text-white text-sm font-medium">Mostrador Dulce</span>
                     </div>
@@ -393,10 +389,9 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12">
                     <!-- Image -->
                     <div class="lg:col-span-6 relative min-h-[300px] lg:min-h-[500px]">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" 
+                        <img src="img/contacto.avif" 
                              alt="Café Pausa Taza y Tostada" 
-                             class="absolute inset-0 w-full h-full object-cover"
-                             onerror="this.src='https://placehold.co/800x800/4a3525/f4eee0?text=Visitanos'">
+                             class="absolute inset-0 w-full h-full object-cover">
                         <div class="absolute inset-0 bg-brand-dark/20"></div>
                     </div>
 
@@ -629,28 +624,28 @@
         // DATA BASE OF PRODUCTS
         const menuProducts = [
             // CAFÉ
-            { id: 'c1', category: 'cafe', name: 'Flat White', price: 3800, desc: 'Doble Ristretto con leche vaporizada en textura fina y sedosa.', tags: ['especialidad', 'recomendado'], image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=300&q=80' },
-            { id: 'c2', category: 'cafe', name: 'Cappuccino Italiano', price: 3600, desc: 'Espresso, leche emulsionada con abundante crema y terminación de cacao amargo.', tags: ['recomendado'], image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=300&q=80' },
-            { id: 'c3', category: 'cafe', name: 'Espresso Doble', price: 2900, desc: 'Extracción pura e intensa de granos arábigos con notas a avellana y chocolate.', tags: [], image: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=300&q=80' },
-            { id: 'c4', category: 'cafe', name: 'Iced Latte Vanilla', price: 4100, desc: 'Espresso doble sobre leche fría, hielo en roca y infusión natural de vainilla.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=300&q=80' },
-            { id: 'c5', category: 'cafe', name: 'Matcha Latte Orgánico', price: 4400, desc: 'Matcha de grado ceremonial importado de Uji con leche cremada y suave toque dulce.', tags: ['especialidad', 'sin-tacc'], image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=300&q=80' },
-            { id: 'c6', category: 'cafe', name: 'Filtrado V60 / Kalita', price: 4200, desc: 'Extracción artesanal por goteo con granos de Colombia o Etiopía. Taza limpia y aromática.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80' },
+            { id: 'c1', category: 'cafe', name: 'Flat White', price: 3800, desc: 'Doble Ristretto con leche vaporizada en textura fina y sedosa.', tags: ['especialidad', 'recomendado'], image: 'img/flat-white.avif' },
+            { id: 'c2', category: 'cafe', name: 'Cappuccino Italiano', price: 3600, desc: 'Espresso, leche emulsionada con abundante crema y terminación de cacao amargo.', tags: ['recomendado'], image: 'img/cappuccino.avif' },
+            { id: 'c3', category: 'cafe', name: 'Espresso Doble', price: 2900, desc: 'Extracción pura e intensa de granos arábigos con notas a avellana y chocolate.', tags: [], image: 'img/espresso.avif' },
+            { id: 'c4', category: 'cafe', name: 'Iced Latte Vanilla', price: 4100, desc: 'Espresso doble sobre leche fría, hielo en roca y infusión natural de vainilla.', tags: ['especialidad'], image: 'img/iced-latte.avif' },
+            { id: 'c5', category: 'cafe', name: 'Matcha Latte Orgánico', price: 4400, desc: 'Matcha de grado ceremonial importado de Uji con leche cremada y suave toque dulce.', tags: ['especialidad', 'sin-tacc'], image: 'img/matcha.avif' },
+            { id: 'c6', category: 'cafe', name: 'Filtrado V60 / Kalita', price: 4200, desc: 'Extracción artesanal por goteo con granos de Colombia o Etiopía. Taza limpia y aromática.', tags: ['especialidad'], image: 'img/filtrado.avif' },
 
             // PASTELERÍA
-            { id: 'p1', category: 'pasteleria', name: 'Croissant de Manteca', price: 2200, desc: 'Auténtico hojaldre estilo francés con fermentación lenta de 24 horas.', tags: ['recomendado'], image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80' },
-            { id: 'p2', category: 'pasteleria', name: 'Carrot Cake de la Casa', price: 4500, desc: 'Bizcochuelo húmedo especiado con zanahorias, nueces picadas y frosting de queso mascarpone.', tags: ['especialidad', 'recomendado'], image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=300&q=80' },
-            { id: 'p3', category: 'pasteleria', name: 'Cheesecake de Frutos Rojos', price: 4800, desc: 'Clásico estilo New York horneado con mermelada casera de frambuesas y moras.', tags: ['sin-tacc'], image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=300&q=80' },
-            { id: 'p4', category: 'pasteleria', name: 'Cookie XL Dark & Sea Salt', price: 2600, desc: 'Masa crocante por fuera y blanda por dentro con trozos de chocolate 70% y escamas de sal.', tags: ['veggie'], image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=300&q=80' },
-            { id: 'p5', category: 'pasteleria', name: 'Budín de Limón & Amapola', price: 2800, desc: 'Porción abundante con almíbar de cítricos naturales y glaseado crujiente.', tags: [], image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80' },
-            { id: 'p6', category: 'pasteleria', name: 'Cinnamon Roll Tibio', price: 3200, desc: 'Rollo esponjoso de canela de Ceylan servido tibio con un toque de crema de azúcar.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=300&q=80' },
+            { id: 'p1', category: 'pasteleria', name: 'Croissant de Manteca', price: 2200, desc: 'Auténtico hojaldre estilo francés con fermentación lenta de 24 horas.', tags: ['recomendado'], image: 'img/croissant.avif' },
+            { id: 'p2', category: 'pasteleria', name: 'Carrot Cake de la Casa', price: 4500, desc: 'Bizcochuelo húmedo especiado con zanahorias, nueces picadas y frosting de queso mascarpone.', tags: ['especialidad', 'recomendado'], image: 'img/carrot-cake.avif' },
+            { id: 'p3', category: 'pasteleria', name: 'Cheesecake de Frutos Rojos', price: 4800, desc: 'Clásico estilo New York horneado con mermelada casera de frambuesas y moras.', tags: ['sin-tacc'], image: 'img/cheesecake.avif' },
+            { id: 'p4', category: 'pasteleria', name: 'Cookie XL Dark & Sea Salt', price: 2600, desc: 'Masa crocante por fuera y blanda por dentro con trozos de chocolate 70% y escamas de sal.', tags: ['veggie'], image: 'img/cookie.avif' },
+            { id: 'p5', category: 'pasteleria', name: 'Budín de Limón & Amapola', price: 2800, desc: 'Porción abundante con almíbar de cítricos naturales y glaseado crujiente.', tags: [], image: 'img/budin.avif' },
+            { id: 'p6', category: 'pasteleria', name: 'Cinnamon Roll Tibio', price: 3200, desc: 'Rollo esponjoso de canela de Ceylan servido tibio con un toque de crema de azúcar.', tags: ['especialidad'], image: 'img/cinnamon-roll.avif' },
 
             // SALADO
-            { id: 's1', category: 'salado', name: 'Tostado Especial en Masa Madre', price: 5200, desc: 'Pan de campo, queso gouda estacionado, jamón natural y manteca de hierbas.', tags: ['recomendado'], image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=300&q=80' },
-            { id: 's2', category: 'salado', name: 'Avocado Toast & Huevo Poché', price: 5600, desc: 'Tostada rústica con palta pisada con limón, huevo poché cremoso, tomates asados y semillas.', tags: ['veggie', 'recomendado'], image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80' },
-            { id: 's3', category: 'salado', name: 'Ciabatta Serrana Gourmet', price: 6400, desc: 'Jamón crudo estacionado, rúcula fresca, bocconcinos de mozzarella y lascas de parmesano.', tags: ['especialidad'], image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=300&q=80' },
-            { id: 's4', category: 'salado', name: 'Bowl Pausa Verde', price: 5800, desc: 'Base de quinoa tricolor, hummus casero de garbanzos, zapallo anco asado, kale y dressing.', tags: ['veggie', 'sin-tacc'], image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80' },
-            { id: 's5', category: 'salado', name: 'Bagel de Queso Brie & Hongos', price: 5900, desc: 'Bagel tostado con sésamo, queso brie tibio, portobellos salteados y cebollitas caramelizadas.', tags: ['veggie'], image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=300&q=80' },
-            { id: 's6', category: 'salado', name: 'Tarta de Calabaza & Queso', price: 4900, desc: 'Masa casera sin TACC, corazón cremoso de calabaza horneada, tomillo y mix de quesos suave.', tags: ['sin-tacc'], image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80' }
+            { id: 's1', category: 'salado', name: 'Tostado Especial en Masa Madre', price: 5200, desc: 'Pan de campo, queso gouda estacionado, jamón natural y manteca de hierbas.', tags: ['recomendado'], image: 'img/tostado.avif' },
+            { id: 's2', category: 'salado', name: 'Avocado Toast & Huevo Poché', price: 5600, desc: 'Tostada rústica con palta pisada con limón, huevo poché cremoso, tomates asados y semillas.', tags: ['veggie', 'recomendado'], image: 'img/avocado-toast.avif' },
+            { id: 's3', category: 'salado', name: 'Ciabatta Serrana Gourmet', price: 6400, desc: 'Jamón crudo estacionado, rúcula fresca, bocconcinos de mozzarella y lascas de parmesano.', tags: ['especialidad'], image: 'img/ciabatta.avif' },
+            { id: 's4', category: 'salado', name: 'Bowl Pausa Verde', price: 5800, desc: 'Base de quinoa tricolor, hummus casero de garbanzos, zapallo anco asado, kale y dressing.', tags: ['veggie', 'sin-tacc'], image: 'img/bowl-verde.avif' },
+            { id: 's5', category: 'salado', name: 'Bagel de Queso Brie & Hongos', price: 5900, desc: 'Bagel tostado con sésamo, queso brie tibio, portobellos salteados y cebollitas caramelizadas.', tags: ['veggie'], image: 'img/bagel.avif' },
+            { id: 's6', category: 'salado', name: 'Tarta de Calabaza & Queso', price: 4900, desc: 'Masa casera sin TACC, corazón cremoso de calabaza horneada, tomillo y mix de quesos suave.', tags: ['sin-tacc'], image: 'img/tarta-calabaza.avif' }
         ];
 
         // CART STATE & MODAL STATE
@@ -688,7 +683,7 @@
 
             bodyElem.innerHTML = highlights.map(p => `
                 <div class="bg-[#fbf8f3] p-4 sm:p-5 rounded-2xl border border-brand-accent/15 flex gap-4 items-center shadow-sm">
-                    <img src="${p.image}" alt="${p.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shrink-0 shadow-sm" onerror="this.src='https://placehold.co/200x200/f4eee0/4a3525?text=${encodeURIComponent(p.name)}'">
+                    <img src="${p.image}" alt="${p.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shrink-0 shadow-sm">
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2 mb-1">
                             <h4 class="font-serif font-bold text-base sm:text-lg text-brand-dark truncate">${p.name}</h4>
@@ -746,7 +741,7 @@
                              data-desc="${p.desc.toLowerCase()}">
                             
                             <div class="flex gap-4 items-start">
-                                <img src="${p.image}" alt="${p.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover shrink-0" onerror="this.src='https://placehold.co/200x200/f4eee0/4a3525?text=${encodeURIComponent(p.name)}'">
+                                <img src="${p.image}" alt="${p.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover shrink-0">
                                 <div class="flex-1 min-w-0">
                                     <div class="flex items-start justify-between gap-2">
                                         <h4 class="font-serif font-bold text-base sm:text-lg text-brand-dark group-hover:text-brand-accent transition-colors">${p.name}</h4>
@@ -1086,7 +1081,7 @@
                     const container = document.getElementById('video-container');
                     if (container) {
                         container.innerHTML = `
-                            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80" 
+                            <img src="img/espacio-1.avif" 
                                  alt="Café Pausa" 
                                  class="w-full h-[380px] sm:h-[480px] object-cover relative z-10">
                         `;
